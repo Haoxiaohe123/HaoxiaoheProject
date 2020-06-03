@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <title>081417220郝笑贺</title>
+
+    <!--用来加载外部资源所用的标签-->
+    <!--相对路径 绝对路径-->
+    <link rel="short icon" href="Resource/icon.png">
+
+    <link rel="stylesheet" href="ExternalStyle.css">
+
+    <script type="text/javascript" src="CommonJs.js"></script>
+
+
+    <style>
+
+        .i_head_div{
+            text-align: center;
+        }
+        .i_head_div img{
+            margin-top:50px;
+        }
+
+        .i_inner_div{
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            width: 90%;
+            margin: 0 auto;
+            background: white;
+            height: 100px;
+            margin-top: 30px;
+        }
+        .i_inner_div div{
+            height: 50px;
+        }
+        .i_inner_div div span{
+            padding-left: 15px;
+            font-size: 20px;
+
+            line-height: 50px;
+        }
+        /*去掉输入框*/
+        input{
+            outline: medium;
+            background-color: transparent;
+            border: 0;
+        }
+
+        .i_login_div{
+            width: 90%;
+            height: 50px;
+            background: rgb(36,92,168);
+            margin: 0 auto;
+            border-radius: 10px;
+            margin-top: 20px;
+
+            text-align: center;
+        }
+        .i_login_div input{
+            font-size: 20px;
+            color:white;
+
+            line-height: 50px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<!--第一部分-->
+<!--语义化标签，标签本身没有专门的意义，它的主要目的就是用来增强程序的可读性-->
+<!--span用来存放少量文字用的标签-->
+<header>
+    <span>登录</span>
+</header>
+
+<div class="i_head_div">
+    <img src="Resource/head.png" alt="">
+</div>
+
+
+<form action="">
+    <div class="i_inner_div">
+        <div style="border-bottom: 1px solid #dddddd;">
+            <span>账号名：</span>
+            <input id ="i_uname"type="text" value="admin"><br>
+        </div>
+
+        <div>
+            <span>密码：</span>
+            <input id="i_pwd"type="password" value="admin"><br>
+
+        </div>
+    </div>
+
+    <div class="i_login_div">
+        <input id="i_btn" type="button" value="登录">
+    </div>
+
+</form>
+
+
+<script>
+
+
+    // function sum(a,b) {
+    //     var c = a + b;
+    //     alert("函数调用到了");
+    //     return c;
+    // }
+    //
+    //
+    // var sum1 =function ( a, b) {
+    //     var c= a + b;
+    //     alert("函数调用到了，呵呵")
+    //     return c;
+    // }
+    //
+    var btn=document.getElementById("i_btn")
+    btn.onclick = function ( ) {
+
+
+        var username = encodeURIComponent(document.getElementById("i_uname").value);
+        var password = encodeURIComponent(document.getElementById("i_pwd").value);
+
+        var par="username="+username + "&pwd="+password;
+
+        requestMethod('post','login',par,function (str) {
+            if (str=="登录成功"){
+                location.href="DropletService.html"
+            }
+
+        })
+
+
+    }
+
+</script>
+
+</body>
+</html>

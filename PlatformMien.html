@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <title>081417220郝笑贺</title>
+
+    <!--用来加载外部资源所用的标签-->
+    <!--相对路径 绝对路径-->
+    <link rel="short icon" href="Resource/icon.png">
+
+    <link rel="stylesheet" href="ExternalStyle.css">
+
+    <script type="text/javascript" src="CommonJs.js"></script>
+
+    <style>
+        h3{
+            color: red;
+            font-size: 18px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #dddddd;
+        }
+        h4{
+            font-size: 14px;
+        }
+        p{
+            font-size: 12px;
+            text-indent: 2em;
+            line-height: 2em;
+        }
+
+    </style>
+</head>
+<body>
+
+<!--第一部分-->
+<!--语义化标签，标签本身没有专门的意义，它的主要目的就是用来增强程序的可读性-->
+<!--span用来存放少量文字用的标签-->
+<header>
+    <span>平台风采</span>
+</header>
+
+
+<!--第二部分-->
+<!--img专门用来放图片资源用的-->
+<section class="DS_second_section">
+    <img src="Resource/banner4.png" alt="加载错误！">
+</section>
+
+<!--第三部分-->
+
+<article>
+    <h3 id="title"></h3>
+    <h4 id="subTitle"></h4>
+    <p id="info"></p>
+
+    <script>
+
+        function  assign(obj) {
+            var title_tag = document.getElementById("title");
+            var title_subTitle = document.getElementById("subTitle");
+            var title_info = document.getElementById("info");
+
+            title_tag.innerHTML = obj.title;
+            title_subTitle.innerHTML = obj.subTitle;
+            title_info.innerHTML = obj.info;
+
+
+        }
+
+        //解析json串并赋值为对象
+        var obj_text=JSON.parse(window.localStorage.getItem("platform_json"));
+
+
+        if(obj_text){
+            //获取data中的内容
+            var obj =obj_text.data;
+            assign(obj);
+        }else {
+            requestMethod('get','aboutus','',function (obj,obj1) {
+                assign(obj);
+
+                //缓存
+                window.localStorage.setItem("platform_json",obj1);
+            })
+        }
+
+    </script>
+</article>
+
+
+<!--第四部分-->
+<footer>
+    <a href="DropletService.html"> <img src="Resource/nav10.png" alt=""> <span>小滴服务</span> </a>
+    <a href="BusinessProject.html"> <img src="Resource/nav20.png" alt=""> <span>企业项目</span> </a>
+    <a href="ServiceProcess.html"> <img src="Resource/nav30.png" alt=""> <span>服务流程</span> </a>
+    <a href=""> <img src="Resource/nav41.png" alt=""> <span style="color: red">平台风采</span> </a>
+    <a href="MyDroplet.html"> <img src="Resource/nav50.png" alt=""> <span>我的小滴</span> </a>
+</footer>
+</body>
+</html>
